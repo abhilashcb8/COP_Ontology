@@ -1,0 +1,1019 @@
+@prefix : <http://www.semanticweb.org/hp/ontologies/2021/COP#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/hp/ontologies/2021/COP> .
+
+<http://www.semanticweb.org/hp/ontologies/2021/COP> rdf:type owl:Ontology ;
+                                                     rdfs:comment """The COP ontology is designed to understand the type of infection or the symptoms that are recorded in all teh pharmacy in karnataka state. 
+The district wise symptom / infctions can be arranged to see and analyse the impact and take necessary precuations to act upon the pandemic situations."""@en ;
+                                                     rdfs:label "COP - COVID-19 Ontology for Pharma"@en .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#confirms
+:confirms rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:label "confirms"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#diagnosis
+:diagnosis rdf:type owl:ObjectProperty ;
+           rdfs:domain :Diagnosis ;
+           rdfs:range [ rdf:type owl:Restriction ;
+                        owl:onProperty :diagnosis ;
+                        owl:someValuesFrom xsd:string
+                      ] .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#getPrescription
+:getPrescription rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf owl:topObjectProperty ;
+                 rdfs:label "getPrescription"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasAllergy
+:hasAllergy rdf:type owl:ObjectProperty ;
+            owl:equivalentProperty <http://www.semanticweb.org/hp/ontologies/2021/COP#hasAllergy+cough> ,
+                                   <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy> ,
+                                   <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy+cough> ;
+            rdfs:subPropertyOf :diagnosis .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasCough
+:hasCough rdf:type owl:ObjectProperty ;
+          owl:equivalentProperty <http://www.semanticweb.org/hp/ontologies/2021/COP#hasAllergy+cough> ,
+                                 <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+cough> ,
+                                 <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy+cough> ;
+          rdfs:subPropertyOf :diagnosis .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasDiagnoisedFor
+:hasDiagnoisedFor rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :diagnosis ;
+                  owl:inverseOf :isDiagnoisedFor ;
+                  rdfs:domain :Diagnosis ;
+                  rdfs:range :Symptoms ;
+                  rdfs:label "hasDiagnoisedFor"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever
+:hasFever rdf:type owl:ObjectProperty ;
+          owl:equivalentProperty <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy> ,
+                                 <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+cough> ,
+                                 <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy+cough> ;
+          rdfs:subPropertyOf :diagnosis .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasPharmacist
+:hasPharmacist rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf owl:topObjectProperty ;
+               rdfs:domain :Drug_Store ;
+               rdfs:range :Pharmacist ;
+               rdfs:label "hasPharmacist"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasSymptom
+:hasSymptom rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdfs:label "hasSymptom"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#isDiagnoisedFor
+:isDiagnoisedFor rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :diagnosis ;
+                 rdfs:label "isDiagnoisedFor"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#medicineFor
+:medicineFor rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdfs:label "medicineFor"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#procuredOn
+:procuredOn rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf owl:topObjectProperty ;
+            rdf:type owl:FunctionalProperty ;
+            rdfs:label "procuredOn"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#provides
+:provides rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf owl:topObjectProperty ;
+          rdfs:label "provides"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#providesMedicines
+:providesMedicines rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf owl:topObjectProperty ;
+                   rdfs:label "providesMedicine"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#residesAt
+:residesAt rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf owl:topObjectProperty ;
+           rdf:type owl:FunctionalProperty ;
+           rdfs:label "residentAt"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#takenTo
+:takenTo rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdfs:label "takenTo"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#underGo
+:underGo rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf owl:topObjectProperty ;
+         rdfs:label "underGO"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#wentTo
+:wentTo rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf owl:topObjectProperty ;
+        rdfs:comment "wentTo"^^xsd:string ;
+        rdfs:label "wentTo"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasAllergy+cough
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasAllergy+cough> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf :diagnosis .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy> rdf:type owl:ObjectProperty ;
+                                                                     rdfs:subPropertyOf :diagnosis .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+cough
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+cough> rdf:type owl:ObjectProperty ;
+                                                                   rdfs:subPropertyOf :diagnosis .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy+cough
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy+cough> rdf:type owl:ObjectProperty ;
+                                                                           rdfs:subPropertyOf :diagnosis .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasILI/SARI
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasILI/SARI> rdf:type owl:ObjectProperty ;
+                                                                rdfs:subPropertyOf :diagnosis .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Acetominophen
+:Acetominophen rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :Fever .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Allergy
+:Allergy rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :Drugs .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Aspirin
+:Aspirin rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :Fever .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Astemizole
+:Astemizole rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Baloxavir_marboxil
+:Baloxavir_marboxil rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf :ILI .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Beclomethasone
+:Beclomethasone rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Bromhexine
+:Bromhexine rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :Cough .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Brompheniramine
+:Brompheniramine rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Carbinoxamine
+:Carbinoxamine rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Codeine
+:Codeine rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :Cough .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Cough
+:Cough rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :Drugs .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Dextromethorphan
+:Dextromethorphan rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :Cough .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Drugs
+:Drugs rdf:type owl:DatatypeProperty ;
+       rdfs:label "Drugs"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Fever
+:Fever rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf :Drugs .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#ILI
+:ILI rdf:type owl:DatatypeProperty ;
+     rdfs:subPropertyOf :Drugs .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Ibuprofen
+:Ibuprofen rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :Fever .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Naproxen
+:Naproxen rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :Fever .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#PID
+:PID rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Paracetamol
+:Paracetamol rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :Fever .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Salbutamol
+:Salbutamol rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :Cough .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#address
+:address rdf:type owl:DatatypeProperty ;
+         rdfs:label "address"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#age
+:age rdf:type owl:DatatypeProperty ;
+     rdfs:label "age"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#date
+:date rdf:type owl:DatatypeProperty ;
+      rdfs:label "date"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#diagnosedOn
+:diagnosedOn rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf :date ;
+             rdfs:label "diagnoisedOn"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#diagnosis
+:diagnosis rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#district
+:district rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :address .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#drugLocation
+:drugLocation rdf:type owl:DatatypeProperty ;
+              rdfs:label "drugLocation"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#drugStoreName
+:drugStoreName rdf:type owl:DatatypeProperty ;
+               rdfs:label "drugStoreName"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#durgType
+:durgType rdf:type owl:DatatypeProperty ;
+          rdfs:label "drugType"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasAllergy
+:hasAllergy rdf:type owl:DatatypeProperty ;
+            owl:equivalentProperty <http://www.semanticweb.org/hp/ontologies/2021/COP#hasAllergy+cough> ,
+                                   <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy> ,
+                                   <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy+cough> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasCough
+:hasCough rdf:type owl:DatatypeProperty ;
+          owl:equivalentProperty <http://www.semanticweb.org/hp/ontologies/2021/COP#hasAllergy+cough> ,
+                                 <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+cough> ,
+                                 <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy+cough> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever
+:hasFever rdf:type owl:DatatypeProperty ;
+          owl:equivalentProperty <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy> ,
+                                 <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+cough> ,
+                                 <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy+cough> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#osetlamivir_phosphate
+:osetlamivir_phosphate rdf:type owl:DatatypeProperty ;
+                       rdfs:subPropertyOf :ILI .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#peramivi
+:peramivi rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf :ILI .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#phone
+:phone rdf:type owl:DatatypeProperty ;
+       rdfs:label "phone"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#pincode
+:pincode rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :address .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#prescription
+:prescription rdf:type owl:DatatypeProperty ;
+              rdfs:label "prescription"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#zanamivir
+:zanamivir rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :ILI .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasAllergy+cough
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasAllergy+cough> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+cough
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+cough> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy+cough
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy+cough> rdf:type owl:DatatypeProperty .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#hasILI/SARI
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasILI/SARI> rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Address
+:Address rdf:type owl:Class ;
+         rdfs:subClassOf :Location ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :address ;
+                           owl:someValuesFrom xsd:string
+                         ] ;
+         rdfs:label "Address"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Agent
+:Agent rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Allergy
+:Allergy rdf:type owl:Class ;
+         rdfs:subClassOf :Symptoms ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :Allergy ;
+                           owl:someValuesFrom xsd:string
+                         ] .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Cough
+:Cough rdf:type owl:Class ;
+       rdfs:subClassOf :Symptoms ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :Cough ;
+                         owl:someValuesFrom xsd:string
+                       ] .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Date
+:Date rdf:type owl:Class ;
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :procuredOn ;
+                        owl:someValuesFrom :Date
+                      ] ;
+      rdfs:label "Date"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Diagnosis
+:Diagnosis rdf:type owl:Class ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasAllergy ;
+                             owl:someValuesFrom xsd:string
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasCough ;
+                             owl:someValuesFrom xsd:string
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasFever ;
+                             owl:someValuesFrom xsd:string
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+cough> ;
+                             owl:someValuesFrom xsd:string
+                           ] ;
+           rdfs:label "Diagnosis"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#District
+:District rdf:type owl:Class ;
+          rdfs:subClassOf :Address ;
+          rdfs:label "District"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Doctor
+:Doctor rdf:type owl:Class ;
+        rdfs:subClassOf :HealthFacility ,
+                        :Person ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :confirms ;
+                          owl:someValuesFrom :Symptoms
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :prescription ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:string
+                        ] ;
+        owl:disjointWith :Patient ,
+                         :Pharmacist ;
+        rdfs:label "Doctor"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Drug_Store
+:Drug_Store rdf:type owl:Class ;
+            rdfs:subClassOf [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasPharmacist ;
+                              owl:someValuesFrom :Pharmacist
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :drugLocation ;
+                              owl:someValuesFrom xsd:string
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :drugStoreName ;
+                              owl:someValuesFrom xsd:string
+                            ] ;
+            rdfs:label "Drug store"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Drug_Type
+:Drug_Type rdf:type owl:Class ;
+           owl:equivalentClass :Symptoms ;
+           rdfs:subClassOf [ rdf:type owl:Restriction ;
+                             owl:onProperty :medicineFor ;
+                             owl:someValuesFrom :Diagnosis
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasAllergy ;
+                             owl:someValuesFrom xsd:string
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasCough ;
+                             owl:someValuesFrom xsd:string
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasFever ;
+                             owl:someValuesFrom xsd:string
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://www.semanticweb.org/hp/ontologies/2021/COP#hasAllergy+cough> ;
+                             owl:someValuesFrom xsd:string
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy> ;
+                             owl:someValuesFrom xsd:string
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+cough> ;
+                             owl:someValuesFrom xsd:string
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy+cough> ;
+                             owl:someValuesFrom xsd:string
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty <http://www.semanticweb.org/hp/ontologies/2021/COP#hasILI/SARI> ;
+                             owl:someValuesFrom xsd:string
+                           ] ;
+           rdfs:label "Drug_Type"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Fever
+:Fever rdf:type owl:Class ;
+       rdfs:subClassOf :Symptoms ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :Fever ;
+                         owl:someValuesFrom xsd:string
+                       ] .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#ForcedExpiratoryVolume
+:ForcedExpiratoryVolume rdf:type owl:Class ;
+                        rdfs:subClassOf :Diagnosis ;
+                        rdfs:label "ForcedExpiratoryVolume"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#HealthFacility
+:HealthFacility rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#HeartRate
+:HeartRate rdf:type owl:Class ;
+           rdfs:subClassOf :Diagnosis .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Location
+:Location rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :residesAt ;
+                            owl:someValuesFrom :Location
+                          ] ;
+          rdfs:label "Location"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#PID
+:PID rdf:type owl:Class ;
+     rdfs:subClassOf :Patient .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Patient
+:Patient rdf:type owl:Class ;
+         rdfs:subClassOf :Person ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasDiagnoisedFor ;
+                           owl:someValuesFrom :Diagnosis
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasSymptom ;
+                           owl:someValuesFrom :Symptoms
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :residesAt ;
+                           owl:someValuesFrom :Location
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :takenTo ;
+                           owl:someValuesFrom :HealthFacility
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :wentTo ;
+                           owl:someValuesFrom :HealthFacility
+                         ] ;
+         rdfs:label "Patient"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Person
+:Person rdf:type owl:Class ;
+        rdfs:subClassOf :Agent ;
+        rdfs:label "Person"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Pharmacist
+:Pharmacist rdf:type owl:Class ;
+            rdfs:subClassOf :Person ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :provides ;
+                              owl:someValuesFrom :Drug_Type
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :providesMedicines ;
+                              owl:someValuesFrom :Drug_Type
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :providesMedicines ;
+                              owl:someValuesFrom :Symptoms
+                            ] ;
+            rdfs:label "Pharmacist"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Phone
+:Phone rdf:type owl:Class ;
+       rdfs:subClassOf :Patient .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Pincode
+:Pincode rdf:type owl:Class ;
+         rdfs:subClassOf :Address ;
+         rdfs:label "Pincode"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription
+:Prescription rdf:type owl:Class ;
+              rdfs:subClassOf :Diagnosis .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Pulse_SpO2
+:Pulse_SpO2 rdf:type owl:Class ;
+            rdfs:subClassOf :Diagnosis .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#StoreCode
+:StoreCode rdf:type owl:Class ;
+           rdfs:subClassOf :Drug_Store ;
+           rdfs:label "StoreCode"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#StoreName
+:StoreName rdf:type owl:Class ;
+           rdfs:subClassOf :Drug_Store ;
+           rdfs:label "StoreName"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Symptoms
+:Symptoms rdf:type owl:Class ;
+          rdfs:label "Symptoms"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Temperature
+:Temperature rdf:type owl:Class ;
+             rdfs:subClassOf :Diagnosis .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Allergy+Cough
+<http://www.semanticweb.org/hp/ontologies/2021/COP#Allergy+Cough> rdf:type owl:Class ;
+                                                                  owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                        owl:unionOf ( :Allergy
+                                                                                                      :Cough
+                                                                                                    )
+                                                                                      ] ;
+                                                                  rdfs:subClassOf :Symptoms ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty :Allergy ;
+                                                                                    owl:someValuesFrom xsd:string
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty :Cough ;
+                                                                                    owl:someValuesFrom xsd:string
+                                                                                  ] ;
+                                                                  rdfs:label "Allergy+cough"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Fever+Allergy
+<http://www.semanticweb.org/hp/ontologies/2021/COP#Fever+Allergy> rdf:type owl:Class ;
+                                                                  owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                        owl:unionOf ( :Allergy
+                                                                                                      :Fever
+                                                                                                    )
+                                                                                      ] ;
+                                                                  rdfs:subClassOf :Symptoms ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty :Allergy ;
+                                                                                    owl:someValuesFrom xsd:string
+                                                                                  ] ,
+                                                                                  [ rdf:type owl:Restriction ;
+                                                                                    owl:onProperty :Fever ;
+                                                                                    owl:someValuesFrom xsd:string
+                                                                                  ] ;
+                                                                  rdfs:label "Fever+Allergy"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Fever+Cough
+<http://www.semanticweb.org/hp/ontologies/2021/COP#Fever+Cough> rdf:type owl:Class ;
+                                                                owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                      owl:unionOf ( :Cough
+                                                                                                    :Fever
+                                                                                                  )
+                                                                                    ] ;
+                                                                rdfs:subClassOf :Symptoms ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty :Cough ;
+                                                                                  owl:someValuesFrom xsd:string
+                                                                                ] ,
+                                                                                [ rdf:type owl:Restriction ;
+                                                                                  owl:onProperty :Fever ;
+                                                                                  owl:someValuesFrom xsd:string
+                                                                                ] ;
+                                                                rdfs:label "Fever+Cough"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Fever+Allergy+Cough
+<http://www.semanticweb.org/hp/ontologies/2021/COP#Fever+Allergy+Cough> rdf:type owl:Class ;
+                                                                        owl:equivalentClass [ rdf:type owl:Class ;
+                                                                                              owl:unionOf ( :Allergy
+                                                                                                            :Cough
+                                                                                                            :Fever
+                                                                                                          )
+                                                                                            ] ;
+                                                                        rdfs:subClassOf :Symptoms ,
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty :Allergy ;
+                                                                                          owl:someValuesFrom xsd:string
+                                                                                        ] ,
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty :Cough ;
+                                                                                          owl:someValuesFrom xsd:string
+                                                                                        ] ,
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty :Fever ;
+                                                                                          owl:someValuesFrom xsd:string
+                                                                                        ] ;
+                                                                        rdfs:label "Fever+Allergy+Cough"^^xsd:string .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI
+<http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf :Symptoms ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty <http://www.semanticweb.org/hp/ontologies/2021/COP#hasILI/SARI> ;
+                                                                                            owl:someValuesFrom <http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI>
+                                                                                          ] ,
+                                                                                          [ rdf:type owl:Restriction ;
+                                                                                            owl:onProperty :ILI ;
+                                                                                            owl:someValuesFrom xsd:string
+                                                                                          ] ;
+                                                                          rdfs:label "Prescription_ILI/SARI"^^xsd:string .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Anaphylaxis
+:Anaphylaxis rdf:type owl:NamedIndividual ,
+                      :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Body_aches
+:Body_aches rdf:type owl:NamedIndividual ,
+                     :Fever .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Chills
+:Chills rdf:type owl:NamedIndividual ,
+                 :Fever ,
+                 <http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Constant_sweating
+:Constant_sweating rdf:type owl:NamedIndividual ,
+                            :Fever .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Cough
+:Cough rdf:type owl:NamedIndividual ,
+                <http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Drop_in_blood_pressure
+:Drop_in_blood_pressure rdf:type owl:NamedIndividual ,
+                                 :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Fatigue
+:Fatigue rdf:type owl:NamedIndividual ,
+                  :Fever ,
+                  <http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Fever
+:Fever rdf:type owl:NamedIndividual ,
+                <http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Flushed_complexion
+:Flushed_complexion rdf:type owl:NamedIndividual ,
+                             :Fever .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Headache
+:Headache rdf:type owl:NamedIndividual ,
+                   :Fever ,
+                   <http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Heart_burn
+:Heart_burn rdf:type owl:NamedIndividual ,
+                     :Cough .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Hives
+:Hives rdf:type owl:NamedIndividual ,
+                :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Hoarseness
+:Hoarseness rdf:type owl:NamedIndividual ,
+                     :Cough .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Intermittent
+:Intermittent rdf:type owl:NamedIndividual ,
+                       :Fever .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Itching
+:Itching rdf:type owl:NamedIndividual ,
+                  :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Light_head_ache
+:Light_head_ache rdf:type owl:NamedIndividual ,
+                          :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Loss_of_conciousness
+:Loss_of_conciousness rdf:type owl:NamedIndividual ,
+                               :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Myalgia
+:Myalgia rdf:type owl:NamedIndividual ,
+                  <http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Nasal_congestion
+:Nasal_congestion rdf:type owl:NamedIndividual ,
+                           <http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Nausea
+:Nausea rdf:type owl:NamedIndividual ,
+                 :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Pharyngitis
+:Pharyngitis rdf:type owl:NamedIndividual ,
+                      <http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Postnasal_drip
+:Postnasal_drip rdf:type owl:NamedIndividual ,
+                         :Cough .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Rash
+:Rash rdf:type owl:NamedIndividual ,
+               :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Running_nose
+:Running_nose rdf:type owl:NamedIndividual ,
+                       :Allergy ,
+                       :Cough .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Shivering
+:Shivering rdf:type owl:NamedIndividual ,
+                    :Fever .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Shortness_of_breath
+:Shortness_of_breath rdf:type owl:NamedIndividual ,
+                              :Allergy ,
+                              :Cough ,
+                              <http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Sneezing
+:Sneezing rdf:type owl:NamedIndividual ,
+                   :Allergy ,
+                   <http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Sore_throat
+:Sore_throat rdf:type owl:NamedIndividual ,
+                      :Cough ,
+                      <http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Stuffy_nose
+:Stuffy_nose rdf:type owl:NamedIndividual ,
+                      :Allergy ,
+                      :Cough .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Swelling
+:Swelling rdf:type owl:NamedIndividual ,
+                   :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Watery_eyes
+:Watery_eyes rdf:type owl:NamedIndividual ,
+                      :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Week_pluse
+:Week_pluse rdf:type owl:NamedIndividual ,
+                     :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#coughing_up_blood
+:coughing_up_blood rdf:type owl:NamedIndividual ,
+                            :Cough .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#ittching_trroat
+:ittching_trroat rdf:type owl:NamedIndividual ,
+                          :Cough .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#malaise
+:malaise rdf:type owl:NamedIndividual ,
+                  <http://www.semanticweb.org/hp/ontologies/2021/COP#Prescription_ILI/SARI> .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#red_eyes
+:red_eyes rdf:type owl:NamedIndividual ,
+                   :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#swollen_eyes
+:swollen_eyes rdf:type owl:NamedIndividual ,
+                       :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#vomitting
+:vomitting rdf:type owl:NamedIndividual ,
+                    :Allergy .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#wheezing
+:wheezing rdf:type owl:NamedIndividual ,
+                   :Cough .
+
+
+###  http://www.semanticweb.org/hp/ontologies/2021/COP#Elevated_temperature(above_100.4)
+<http://www.semanticweb.org/hp/ontologies/2021/COP#Elevated_temperature(above_100.4)> rdf:type owl:NamedIndividual ,
+                                                                                               :Fever .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+:Allergy rdfs:label "Allergy"^^xsd:string .
+
+
+:Cough rdfs:label "Cough"^^xsd:string .
+
+
+:Fever rdfs:label "Fever"^^xsd:string .
+
+
+:PID rdfs:label "PID"^^xsd:string .
+
+
+:diagnosis rdfs:label "diagnosis"^^xsd:string .
+
+
+:hasAllergy rdfs:label "Allergy"^^xsd:string .
+
+
+:hasCough rdfs:label "Cough"^^xsd:string .
+
+
+:hasFever rdfs:label "Fever"^^xsd:string .
+
+
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasAllergy+cough> rdfs:label "Allergy+cough"^^xsd:string .
+
+
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy> rdfs:label "Fever+allergy"^^xsd:string .
+
+
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+cough> rdfs:label "Fever+Cough"^^xsd:string .
+
+
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasFever+allergy+cough> rdfs:label "Fever+allergy+cough"^^xsd:string .
+
+
+<http://www.semanticweb.org/hp/ontologies/2021/COP#hasILI/SARI> rdfs:label "ILI/SARI"^^xsd:string .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
